@@ -22,3 +22,52 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.headerbar{
+    padding-top:15px;
+    padding-bottom:15px;
+
+    align-content:flex-start;
+}
+
+.col1{
+    float:left;
+    text-align:center;
+    width:20%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top:30px;
+    clear:both;
+}
+
+.fileContainer{
+    float:right;
+
+    padding-top: 30px;
+    padding-right:2%;
+    text-align:center;
+    border:solid;
+    border-color:green;
+    border-width:2px;
+    
+    align-content:flex-start;
+    height:500px;
+    
+}
+
+.filebox{
+    text-align:center;
+    border:thick;
+    border-style:solid;
+    border-color:blue;
+    border-width:5px;
+    width:50px;
+    clear:inherit;
+    float: left;
+}
+.filebox-active{
+    text-align:center;
+    border-style: solid;
+    border-color:red;
+    border-width:5px;
+}
