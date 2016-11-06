@@ -43,25 +43,23 @@ textarea {
 .col2{
     float:left;
     width:60%;
-    height:50%;
+    height:100%;
 }
 
 .fileContainer{
-    
-    border:solid;
+    border-style:solid;
     border-color:green;
     border-width:2px;
-    
+    height:75vh;
 }
-
 .filebox{
     text-align:center;
-    border:thick;
     border-style:solid;
     border-color:blue;
-    border-width:5px;
-    width:50px;
-    clear:inherit;
+    border-width:2px;
+    width:inherit;
+    margin:5px;
+    padding:2px;
     float: left;
 }
 .filebox-active{

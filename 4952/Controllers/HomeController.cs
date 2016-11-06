@@ -26,5 +26,10 @@ namespace _4952.Controllers
 
             return View();
         }
+
+        public ActionResult fileBox()
+        {
+            return PartialView();
+        }
     }
 }
