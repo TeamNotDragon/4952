@@ -14,7 +14,7 @@ namespace _4952.Controllers
 {
     public class HomeController : Controller
     {
-        FileDBEntities db = new FileDBEntities();
+        azureEntities db = new azureEntities();
 
         public ActionResult Index()
         {
@@ -32,17 +32,34 @@ namespace _4952.Controllers
 
                 byte[] uploadedFile = new byte[model.File.InputStream.Length];
                 model.File.InputStream.Read(uploadedFile, 0, uploadedFile.Length);
-                db.Files.Add(new Models.File()
+                
+                using (SqlConnection connection = new SqlConnection(ConnectionStringBS.connectionString))
                 {
-                    fileID = new Random().Next(int.MinValue, int.MaxValue),
-                    userID = 1,
-                    data = uploadedFile,
-                    fileName = model.File.FileName,
-                    fileSize = uploadedFile.Length.ToString(),
-                    fileDateCreated = DateTime.Now.ToString("dd/MM/yyyy")
-                });
+                    connection.Open();
 
-                db.SaveChanges();
+                    SqlCommand command = connection.CreateCommand();
+                    SqlTransaction transaction;
+
+                    // Start a local transaction.
+                    transaction = connection.BeginTransaction("AddFile");
+
+                    // Must assign both transaction object and connection
+                    // to Command object for a pending local transaction
+                    command.Connection = connection;
+                    command.Transaction = transaction;
+
+                    command.CommandText = "Insert into [File] (userID, data, fileName, fileSize, fileDateCreated) VALUES (@userID, @data, @fileName, @fileSize, @fileDateCreated)";
+                    command.Parameters.Add("@userID", SqlDbType.Int).Value = 2;
+                    command.Parameters.Add("@data", SqlDbType.VarBinary, -1).Value = uploadedFile;
+                    command.Parameters.Add("@fileName", SqlDbType.VarChar, 255).Value = model.File.FileName;
+                    command.Parameters.Add("@fileSize", SqlDbType.Int).Value = uploadedFile.Length;
+                    command.Parameters.Add("@fileDateCreated", SqlDbType.DateTime).Value = DateTime.Now;
+                    command.ExecuteNonQuery();
+
+                    // Attempt to commit the transaction.
+                    transaction.Commit();
+                }
+
 
             }
 
@@ -63,7 +80,7 @@ namespace _4952.Controllers
 
             return View();
         }
-        
+
         public ActionResult fileBox()
         {
             return PartialView();
