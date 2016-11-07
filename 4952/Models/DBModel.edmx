@@ -56,7 +56,7 @@
           <Property Name="fileID" Type="Int32" Nullable="false" />
           <Property Name="userID" Type="Int32" Nullable="false" />
           <Property Name="data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="fileName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fileName" Type="String" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="fileSize" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="fileDateCreated" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.userID" FromRole="File" ToRole="User" />
