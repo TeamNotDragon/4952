@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<_4952.Models.File>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -24,6 +25,9 @@
         <button>button3</button>
     </div>
     <div class="fileContainer">
-        @Html.Partial("fileBox")
+        @foreach (_4952.Models.File f in Model)
+        {
+            @Html.Partial("fileBox", f)
+        }
     </div>
 </div>

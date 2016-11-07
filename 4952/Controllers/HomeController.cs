@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using _4952.Models;
 
 namespace _4952.Controllers
 {
     public class HomeController : Controller
     {
+        FileDBEntities db = new FileDBEntities();
+
         public ActionResult Index()
         {
-            return View();
+            return View(db.Files.ToList());
         }
         
         public ActionResult About()

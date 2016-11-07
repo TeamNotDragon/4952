@@ -1,5 +1,7 @@
-﻿<div class="filebox">
-    boxcontent
+﻿@model _4952.Models.File
+
+<div class="filebox">
+    @Html.LabelFor(m => m.fileName)
     <br />
-    boxcontent
+    @Html.LabelFor(m => m.fileSize)
 </div>
