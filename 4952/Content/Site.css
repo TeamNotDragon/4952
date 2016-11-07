@@ -34,10 +34,10 @@ textarea {
     float:left;
     text-align:center;
     width:20%;
+    height:inherit;
     padding-left: 2%;
     padding-right: 2%;
     padding-top:15px;
-    clear:both;
 }
 
 .col2{
@@ -67,4 +67,9 @@ textarea {
     border-style: solid;
     border-color:red;
     border-width:5px;
+}
+
+.logout{
+    position:relative;
+    bottom:0px;
 }
