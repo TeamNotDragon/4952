@@ -29,21 +29,44 @@ textarea {
 
     align-content:flex-start;
 }
+.topbar{
+    display:inline-block;
+    width:80%;
+    height: 10%;
+    /*
+    border-color:blue;
+    border-style: solid;
+        */
+    margin-top: 1%;
+    margin-bottom: 1%;
+    float:right;
 
-.col1{
+}
+.topbuttons {
+    float:left;
+}
+.sidebar{
     float:left;
     text-align:center;
     width:20%;
-    height:inherit;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-top:15px;
+    height:90%;
+    overflow: hidden; /* can me taken off in a bit*/
 }
-
-.col2{
+.sidebar ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
+}
+.sidebar li {
+    width: 100%;
+    padding-top: 25%;
+}
+.content{
     float:left;
-    width:60%;
-    height:100%;
+    width:80%;
+    height:90%;
 }
 
 .fileContainer{

@@ -3,10 +3,18 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="col1">
-    <h2>LOGO</h2>
-    <br /><br />
+<div class="topbar">
+    <div class="topbuttons">
+        <button>button1</button>
+        <button>button2</button>
+        <button>button3</button>
+    </div>   
+</div>
 
+<div class="sidebar">
+    <div class="logo">
+        <h2>LOGO</h2>
+    </div>
     @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div>
@@ -31,12 +39,7 @@
 
 </div>
 
-<div class="col2">
-    <div class="headerbar">
-        <button>button1</button>
-        <button>button2</button>
-        <button>button3</button>
-    </div>
+<div class="content">
     <div class="fileContainer">
         @foreach (_4952.Models.File f in Model.Files)
         {
