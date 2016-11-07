@@ -77,3 +77,4 @@ _[Ss]cripts
 *.ncrunchsolution
 *.dot[Cc]over
 ConnectionStringBS.cs
+Web.config
