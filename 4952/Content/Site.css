@@ -29,6 +29,9 @@ textarea {
 
     align-content:flex-start;
 }
+.btn{
+    border-radius: 0px;
+}
 .topbar{
     display:inline-block;
     width:80%;

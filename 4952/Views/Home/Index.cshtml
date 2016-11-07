@@ -5,9 +5,9 @@
 
 <div class="topbar">
     <div class="topbuttons">
-        <button>button1</button>
-        <button>button2</button>
-        <button>button3</button>
+        <button class="btn btn-warning">Create Folder</button>
+        <button class="btn btn-warning">Delete</button>
+        <button class="btn btn-warning">Move To</button>
     </div>   
 </div>
 
@@ -23,17 +23,23 @@
             @Html.ValidationMessageFor(x => x.File)
         </div>
         <br /><br />
-        <button type="submit">Upload</button>
+        <button type="submit" class="btn btn-danger btn-lg">Upload</button>
     }
     <br /><br />
-    <button> Search </button>
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" />
+            <button class="btn btn-warning"> Search </button>
+        </div>
+    </form>
+    
     <br /><br /><br />
     <div class="fileinfo">
-        file info 1 <br />
+        file info 1 <br/>
     </div>
 
     <div class="logout">
-        <button> Logout </button>
+        <button class="btn btn-warning"> Logout </button>
     </div>
 
 
