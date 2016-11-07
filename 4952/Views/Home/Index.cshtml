@@ -1,4 +1,4 @@
-﻿@model List<_4952.Models.File>
+﻿@model _4952.Models.MyViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -7,15 +7,24 @@
     <h2>LOGO</h2>
     <br /><br />
 
-    <div class="form-group">
-        <input type="button" class="btn btn-default" value="Upload" />
-    </div>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            @Html.LabelFor(x => x.File)
+            @Html.TextBoxFor(x => x.File, new { type = "file" })
+            @Html.ValidationMessageFor(x => x.File)
+        </div>
+        <br /><br />
+        <button type="submit">Upload</button>
+    }
     <br /><br />
     <button> Search </button>
     <br /><br /><br />
     <div class="fileinfo">
         file info 1 <br />
     </div>
+
+
 </div>
 
 <div class="col2">
@@ -25,7 +34,7 @@
         <button>button3</button>
     </div>
     <div class="fileContainer">
-        @foreach (_4952.Models.File f in Model)
+        @foreach (_4952.Models.File f in Model.Files)
         {
             @Html.Partial("fileBox", f)
         }
