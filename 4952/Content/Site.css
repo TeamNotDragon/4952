@@ -32,6 +32,10 @@ textarea {
 .btn{
     border-radius: 0px;
 }
+.col-md-7 {
+    margin-right: 0;
+    padding-right: 0;
+}
 .topbar{
     display:inline-block;
     width:80%;
