@@ -12,9 +12,15 @@
 </div>
 
 <div class="sidebar">
-    <div class="logo">
-        <h2>LOGO</h2>
-    </div>
+    <form class="search">
+        <div class="row">
+            <div class="col-md-7" id="search-bar">
+                <input type="text" class="form-control" placeholder="Search" />
+            </div>
+            <button class="btn btn-warning"> Search </button>
+        </div>
+    </form>
+    <br />
     @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div>
@@ -26,16 +32,6 @@
         <button type="submit" class="btn btn-danger btn-lg">Upload</button>
     }
     <br /><br />
-    <form class="search">
-        <div class="row">
-            <div class="col-md-7" id="search-bar">
-                <input type="text" class="form-control" placeholder="Search" />
-            </div>
-            <button class="btn btn-warning"> Search </button>
-        </div>
-    </form>
-    
-    <br /><br /><br />
     <div class="fileinfo">
         file info 1 <br/>
     </div>

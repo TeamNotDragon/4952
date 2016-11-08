@@ -1,6 +1,13 @@
-﻿body {
+﻿html{
+    max-height: 100%;
+    background-color: antiquewhite;
+}
+
+body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    min-height: 100%;
+    
+    
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -12,7 +19,7 @@
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
+.dl-horizontal dt { 
     white-space: normal;
 }
 
@@ -49,6 +56,9 @@ textarea {
     float:right;
 
 }
+.search {
+    margin-top: 5%;
+}
 .topbuttons {
     float:left;
 }
@@ -78,7 +88,8 @@ textarea {
 
 .fileContainer{
     border-style:solid;
-    border-color:green;
+    border-color:dimgrey;
+    background-color:beige;
     border-width:2px;
     height:75vh;
 }
