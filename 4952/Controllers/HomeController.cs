@@ -45,9 +45,9 @@ namespace _4952.Controllers
             return View(model);
         }
 
-        public ActionResult DownloadFile()
+        public ActionResult DownloadFile(int id)
         {
-            Models.File file = db.Files.Find(fixedFileIDForTestingPurposesOnly);
+            Models.File file = db.Files.Find(id);
             if (file.userID != fixedUserIDForTestingPurposesOnly)
             {
                 return RedirectToAction("Index");

@@ -4,4 +4,6 @@
     <text>@Model.fileName</text>
     <br />
     @Html.Label(Model.fileDateCreated.ToString())
+    <br />
+    <input type="button" class="btn btn-warning" value="Download" onclick="location.href='@Url.Action("DownloadFile", "Home", new { id = Model.FileID})'" />
 </div>
