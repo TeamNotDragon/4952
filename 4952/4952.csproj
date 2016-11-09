@@ -223,9 +223,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FileDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\FileMetadata.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MyViewModel.cs" />
+    <Compile Include="Models\FileViewModel.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>FileDB.tt</DependentUpon>
     </Compile>
@@ -343,7 +344,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60490</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

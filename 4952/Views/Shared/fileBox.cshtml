@@ -1,9 +1,9 @@
-﻿@model _4952.Models.File
+﻿@model _4952.Models.FileMetadata
 
 <div class="filebox">
     <text>@Model.fileName</text>
     <br />
     @Html.Label(Model.fileDateCreated.ToString())
     <br />
-    <input type="button" class="btn btn-warning" value="Download" onclick="location.href='@Url.Action("DownloadFile", "Home", new { id = Model.FileID})'" />
+    <input type="button" class="btn btn-warning" value="Download" onclick="location.href='@Url.Action("DownloadFile", "Home", new { id = Model.fileID})'" />
 </div>

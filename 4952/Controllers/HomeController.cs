@@ -16,32 +16,32 @@ namespace _4952.Controllers
     {
         azureEntities db = new azureEntities();
         static int fixedUserIDForTestingPurposesOnly = 2;
-        static int fixedFileIDForTestingPurposesOnly = 2;
+
         public ActionResult Index()
         {
-            var model = new MyViewModel();
-            model.Files = db.Files.ToList();
+            var model = new FileViewModel();
+            model.fileMetadataList = db.Files.ToList().Select(x => new FileMetadata(x)).ToList();
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Index(MyViewModel model)
+        public ActionResult Index(FileViewModel model)
         {
-            if (model.File != null)
+            if (model.filePosted != null)
             {
-                byte[] fileBytes = new byte[model.File.InputStream.Length];
-                model.File.InputStream.Read(fileBytes, 0, fileBytes.Length);
+                byte[] fileBytes = new byte[model.filePosted.InputStream.Length];
+                model.filePosted.InputStream.Read(fileBytes, 0, fileBytes.Length);
                 db.Files.Add(new Models.File()
                 {
                     userID = fixedUserIDForTestingPurposesOnly,
                     data = fileBytes,
-                    fileName = model.File.FileName,
+                    fileName = model.filePosted.FileName,
                     fileSize = fileBytes.Length,
                     fileDateCreated = DateTime.Now
                 });
                 db.SaveChanges();
             }
-            model.Files = db.Files.ToList();
+            model.fileMetadataList = db.Files.ToList().Select(x => new FileMetadata(x)).ToList();
             return View(model);
         }
 
