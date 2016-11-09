@@ -16,6 +16,7 @@ namespace _4952.Controllers
     {
         azureEntities db = new azureEntities();
         static int fixedUserIDForTestingPurposesOnly = 2;
+        static int fixedFileIDForTestingPurposesOnly = 2;
         public ActionResult Index()
         {
             var model = new MyViewModel();
@@ -42,6 +43,16 @@ namespace _4952.Controllers
             }
             model.Files = db.Files.ToList();
             return View(model);
+        }
+
+        public ActionResult DownloadFile()
+        {
+            Models.File file = db.Files.Find(fixedFileIDForTestingPurposesOnly);
+            if (file.userID != fixedUserIDForTestingPurposesOnly)
+            {
+                return RedirectToAction("Index");
+            }
+            return File(file.data, System.Net.Mime.MediaTypeNames.Application.Octet, file.fileName.Trim());
         }
 
         public ActionResult About()
