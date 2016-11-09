@@ -20,7 +20,7 @@ namespace _4952.Controllers
         public ActionResult Index()
         {
             var model = new FileViewModel();
-            model.fileMetadataList = db.Files.ToList().Select(x => new FileMetadata(x)).ToList();
+            model.fileMetadataList = db.Files.Where(x => x.userID == fixedUserIDForTestingPurposesOnly).ToList().Select(x => new FileMetadata(x)).ToList();
             return View(model);
         }
 
