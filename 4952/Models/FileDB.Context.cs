@@ -27,5 +27,8 @@ namespace _4952.Models
     
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<User> Users { get; set; }
+
+        //delete this line when scaffolding new pages to MyAccountController
+        public System.Data.Entity.DbSet<_4952.Models.UserAccount> UserAccounts { get; set; }
     }
 }
