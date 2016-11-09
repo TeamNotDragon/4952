@@ -20,7 +20,9 @@ namespace _4952.Controllers
         public ActionResult Index()
         {
             var model = new FileViewModel();
-            model.fileMetadataList = db.Files.Where(x => x.userID == fixedUserIDForTestingPurposesOnly).ToList().Select(x => new FileMetadata(x)).ToList();
+            model.fileMetadataList = db.Files
+                                        .Where(x => x.userID == fixedUserIDForTestingPurposesOnly).ToList()
+                                        .Select(x => new FileMetadata(x)).ToList();
             return View(model);
         }
 
@@ -53,6 +55,16 @@ namespace _4952.Controllers
                 return RedirectToAction("Index");
             }
             return File(file.data, System.Net.Mime.MediaTypeNames.Application.Octet, file.fileName.Trim());
+        }
+
+        public ActionResult DeleteFile(int id) {
+            Models.File file = db.Files.Find(id);
+            if (file.userID == fixedUserIDForTestingPurposesOnly)
+            {
+                db.Files.Remove(file);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
         public ActionResult About()
