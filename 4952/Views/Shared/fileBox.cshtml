@@ -5,6 +5,6 @@
     <br />
     @Html.Label(Model.fileDateCreated.ToString())
     <br />
-    <input type="button" class="btn btn-warning" value="Download" onclick="location.href='@Url.Action("DownloadFile", "Home", new { id = Model.fileID})'" />
-    <input type="button" class="btn btn-warning" value="Delete" onclick="location.href='@Url.Action("DeleteFile", "Home", new { id = Model.fileID})'" />
+    <input type="button" class="btn btn-toolbar" value="Download" onclick="location.href='@Url.Action("DownloadFile", "Home", new { id = Model.fileID})'" />
+    <input type="button" class="btn btn-danger" value="Delete" onclick="location.href='@Url.Action("DeleteFile", "Home", new { id = Model.fileID})'" />
 </div>
