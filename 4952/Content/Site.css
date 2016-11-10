@@ -129,3 +129,6 @@ footer {
 .col-md-10 {
     padding-bottom: 2%;
 }
+#registerLink {
+    color: white;
+}
