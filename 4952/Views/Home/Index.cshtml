@@ -3,14 +3,6 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="topbar">
-    <div class="topbuttons">
-        <button class="btn btn-warning">Create Folder</button>
-        <button class="btn btn-warning">Delete</button>
-        <button class="btn btn-warning">Move To</button>
-    </div>   
-</div>
-
 <div class="sidebar">
     <form class="search">
         <div class="row">
@@ -21,18 +13,15 @@
         </div>
     </form>
     <br />
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div>
-            @Html.TextBoxFor(x => x.filePosted, new { type = "file" })
-            @Html.ValidationMessageFor(x => x.filePosted)
-        </div>
-        <br /><br />
-        <button type="submit" class="btn btn-success btn-lg">Upload</button>
-    }
+    <div>
+        @Html.TextBoxFor(x => x.filePosted, new { type = "file" })
+        @Html.ValidationMessageFor(x => x.filePosted)
+    </div>
+    <br /><br />
+    <button type="submit" class="btn btn-success btn-lg">Upload</button>
     <br /><br />
     <div class="fileinfo">
-        file info 1 <br/>
+        file info 1 <br />
     </div>
 
     <div class="logout">
@@ -43,10 +32,20 @@
 </div>
 
 <div class="content">
-    <div class="fileContainer">
-        @foreach (_4952.Models.FileMetadata f in Model.fileMetadataList)
-        {
-            @Html.Partial("fileBox", f)
-        }
-    </div>
+    @using (Html.BeginForm("FileSelected", "Home", FormMethod.Post, new { form = "files" }))
+    {
+        <div>
+            <input type="submit" class="btn btn-warning" name="submitButton" value="Download" form="files" />
+            <input type="submit" class="btn btn-warning" name="submitButton" value="Delete" form="files" />
+            <button class="btn btn-warning">Create Folder</button>
+            <button class="btn btn-warning">Move To</button>
+        </div>
+        <br />
+        <div class="fileContainer">
+            @foreach (_4952.Models.FileMetadata f in Model.fileMetadataList)
+                {
+                @Html.Partial("fileBox", f)
+            }
+        </div>
+    }
 </div>

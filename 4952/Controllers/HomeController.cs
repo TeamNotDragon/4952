@@ -60,6 +60,21 @@ namespace _4952.Controllers
                                       }).ToList();
             return View(model);
         }
+        
+        [HttpPost]
+        public ActionResult FileSelected(string submitButton)
+        {
+            var selectedFile = Convert.ToInt32(Request.Form["rGroup"].ToString());
+            switch (submitButton)
+            {
+                case "Download":
+                    return DownloadFile(selectedFile);
+                case "Delete":
+                    return DeleteFile(selectedFile);
+                default:
+                    return Index();
+            }
+        }
 
         public ActionResult DownloadFile(int id)
         {
