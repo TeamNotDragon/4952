@@ -60,36 +60,38 @@ namespace _4952.Controllers
                                       }).ToList();
             return View(model);
         }
-        
+
         [HttpPost]
         public ActionResult FileSelected(string submitButton)
         {
-            var selectedFile = Convert.ToInt32(Request.Form["rGroup"].ToString());
-            switch (submitButton)
+            int selectedFile;
+            if (int.TryParse(Request.Form["rGroup"], out selectedFile))
             {
-                case "Download":
-                    return DownloadFile(selectedFile);
-                case "Delete":
-                    return DeleteFile(selectedFile);
-                default:
-                    return Index();
+                switch (submitButton)
+                {
+                    case "Download":
+                        return DownloadFile(selectedFile);
+                    case "Delete":
+                        return DeleteFile(selectedFile);
+                }
             }
+            return RedirectToAction("Index");
         }
 
         public ActionResult DownloadFile(int id)
         {
             Models.File file = db.Files.Find(id);
-            if (file.userID != fixedUserIDForTestingPurposesOnly)
+            if (file != null && file.userID == fixedUserIDForTestingPurposesOnly)
             {
-                return RedirectToAction("Index");
+                return File(file.data, System.Net.Mime.MediaTypeNames.Application.Octet, file.fileName.Trim());
             }
-            return File(file.data, System.Net.Mime.MediaTypeNames.Application.Octet, file.fileName.Trim());
+            return RedirectToAction("Index");
         }
 
         public ActionResult DeleteFile(int id)
         {
             Models.File file = db.Files.Find(id);
-            if (file.userID == fixedUserIDForTestingPurposesOnly)
+            if (file != null && file.userID == fixedUserIDForTestingPurposesOnly)
             {
                 db.Files.Remove(file);
                 db.SaveChanges();

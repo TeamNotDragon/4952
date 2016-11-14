@@ -57,7 +57,6 @@ textarea {
 
 }
 .search {
-    margin-top: 5%;
 }
 .topbuttons {
     float:left;
@@ -93,6 +92,14 @@ textarea {
     border-width:2px;
     height:75vh;
 }
+.fileContainer input[type="radio"] {
+    display: none; 
+}
+.fileContainer label {
+}
+.fileContainer input[type="radio"]:checked + label { 
+    border-color: #5cb85c;
+}
 .filebox{
     text-align:center;
     border-style:solid;
@@ -127,13 +134,3 @@ footer {
     color: white;
 }
 
-.fileContainer input[type="radio"] {
-    display:none; 
-}
-
-.fileContainer label {
-}
-
-.fileContainer input[type="radio"]:checked + label { 
-    border-color:red;
-}

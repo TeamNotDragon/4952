@@ -20,32 +20,27 @@
     <br /><br />
     <button type="submit" class="btn btn-success btn-lg">Upload</button>
     <br /><br />
-    <div class="fileinfo">
-        file info 1 <br />
-    </div>
-
     <div class="logout">
         <button class="btn btn-warning"> Logout </button>
     </div>
-
-
 </div>
 
 <div class="content">
-    @using (Html.BeginForm("FileSelected", "Home", FormMethod.Post, new { form = "files" }))
+    @using (Html.BeginForm("FileSelected", "Home", FormMethod.Post))
     {
         <div>
-            <input type="submit" class="btn btn-warning" name="submitButton" value="Download" form="files" />
-            <input type="submit" class="btn btn-warning" name="submitButton" value="Delete" form="files" />
+            <input type="submit" class="btn btn-success" name="submitButton" value="Download" />
             <button class="btn btn-warning">Create Folder</button>
             <button class="btn btn-warning">Move To</button>
+            <input type="submit" class="btn btn-danger" name="submitButton" value="Delete" />
         </div>
         <br />
-        <div class="fileContainer">
+        <input type="radio" name="rGroup" id="goat" checked="checked" hidden="hidden" />
+        <label class="fileContainer" for="goat">
             @foreach (_4952.Models.FileMetadata f in Model.fileMetadataList)
-                {
+            {
                 @Html.Partial("fileBox", f)
             }
-        </div>
+        </label>
     }
 </div>
