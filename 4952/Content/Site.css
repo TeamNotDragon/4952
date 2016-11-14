@@ -54,7 +54,6 @@ textarea {
     margin-top: 1%;
     margin-bottom: 1%;
     float:right;
-
 }
 .search {
 }
@@ -88,27 +87,28 @@ textarea {
 .fileContainer{
     border-style:solid;
     border-color:dimgrey;
-    background-color:beige;
-    border-width:2px;
+    background-color: whitesmoke;
+    border-width:1px;
     height:75vh;
 }
 .fileContainer input[type="radio"] {
     display: none; 
 }
 .fileContainer label {
-}
-.fileContainer input[type="radio"]:checked + label { 
-    border-color: #5cb85c;
-}
-.filebox{
     text-align:center;
+    background-color:white;
     border-style:solid;
-    border-color:black;
+    border-color:dimgrey;
     border-width:1px;
     width:inherit;
     margin:5px;
     padding:2px;
     float: left;
+}
+.fileContainer input[type="radio"]:checked + label { 
+    border-width:2px;
+    padding:1px;
+    border-color: #5cb85c;
 }
 
 .logout{
