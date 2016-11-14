@@ -20,9 +20,15 @@ namespace _4952.Controllers
         public ActionResult Index()
         {
             var model = new FileViewModel();
-            model.fileMetadataList = db.Files
-                                        .Where(x => x.userID == fixedUserIDForTestingPurposesOnly).ToList()
-                                        .Select(x => new FileMetadata(x)).ToList();
+            model.fileMetadataList = (from file in db.Files
+                                      where file.userID == fixedUserIDForTestingPurposesOnly
+                                      select new FileMetadata()
+                                      {
+                                          fileID = file.FileID,
+                                          fileName = file.fileName,
+                                          fileSize = file.fileSize,
+                                          fileDateCreated = file.fileDateCreated,
+                                      }).ToList();
             return View(model);
         }
 
@@ -43,7 +49,15 @@ namespace _4952.Controllers
                 });
                 db.SaveChanges();
             }
-            model.fileMetadataList = db.Files.ToList().Select(x => new FileMetadata(x)).ToList();
+            model.fileMetadataList = (from file in db.Files
+                                      where file.userID == fixedUserIDForTestingPurposesOnly
+                                      select new FileMetadata()
+                                      {
+                                          fileID = file.FileID,
+                                          fileName = file.fileName,
+                                          fileSize = file.fileSize,
+                                          fileDateCreated = file.fileDateCreated,
+                                      }).ToList();
             return View(model);
         }
 
@@ -57,7 +71,8 @@ namespace _4952.Controllers
             return File(file.data, System.Net.Mime.MediaTypeNames.Application.Octet, file.fileName.Trim());
         }
 
-        public ActionResult DeleteFile(int id) {
+        public ActionResult DeleteFile(int id)
+        {
             Models.File file = db.Files.Find(id);
             if (file.userID == fixedUserIDForTestingPurposesOnly)
             {
