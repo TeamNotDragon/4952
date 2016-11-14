@@ -13,13 +13,14 @@
         </div>
     </form>
     <br />
-    <div>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
         @Html.TextBoxFor(x => x.filePosted, new { type = "file" })
         @Html.ValidationMessageFor(x => x.filePosted)
-    </div>
-    <br /><br />
-    <button type="submit" class="btn btn-success btn-lg">Upload</button>
-    <br /><br />
+        <br />
+        <button type="submit" class="btn btn-success btn-lg">Upload</button>
+    }
+    <br />
     <div class="logout">
         <button class="btn btn-warning"> Logout </button>
     </div>
