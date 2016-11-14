@@ -103,12 +103,6 @@ textarea {
     padding:2px;
     float: left;
 }
-.filebox:active{
-    text-align:center;
-    border-style: solid;
-    border-color:red;
-    border-width:5px;
-}
 
 .logout{
     position:relative;
@@ -131,4 +125,15 @@ footer {
 }
 #registerLink {
     color: white;
+}
+
+.fileContainer input[type="radio"] {
+    display:none; 
+}
+
+.fileContainer label {
+}
+
+.fileContainer input[type="radio"]:checked + label { 
+    border-color:red;
 }

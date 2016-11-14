@@ -1,10 +1,12 @@
 ﻿@model _4952.Models.FileMetadata
+<input type="radio" name="rGroup" id="@Model.fileID" value="@Model.fileID" checked="checked" />
+<label class="filebox" for="@Model.fileID">
+    @Model.fileName
+    <br />
+    @Model.fileDateCreated.ToString("MM-dd-yyyy")
+    <br />
 
-<div class="filebox">
-    <text>@Model.fileName</text>
-    <br />
-    @Html.Label(Model.fileDateCreated.ToString())
-    <br />
     <input type="button" class="btn btn-toolbar" value="Download" onclick="location.href='@Url.Action("DownloadFile", "Home", new { id = Model.fileID})'" />
     <input type="button" class="btn btn-danger" value="Delete" onclick="location.href='@Url.Action("DeleteFile", "Home", new { id = Model.fileID})'" />
-</div>
+
+</label>
