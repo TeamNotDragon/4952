@@ -38,6 +38,7 @@ namespace _4952.Controllers
             if (model.filePosted != null)
             {
                 byte[] fileBytes = new byte[model.filePosted.InputStream.Length];
+                
                 model.filePosted.InputStream.Read(fileBytes, 0, fileBytes.Length);
                 db.Files.Add(new Models.File()
                 {
