@@ -17,7 +17,7 @@ namespace _4952.Controllers
         azureEntities db = new azureEntities();
         static int fixedUserIDForTestingPurposesOnly = 2;
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var model = new FileViewModel();
             model.fileMetadataList = (from file in db.Files
@@ -29,6 +29,27 @@ namespace _4952.Controllers
                                           fileSize = file.fileSize,
                                           fileDateCreated = file.fileDateCreated,
                                       }).ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+                model.fileMetadataList = model.fileMetadataList.Where(s => s.fileName.Contains(searchString)).ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Search(string searchString)
+        {
+            Debug.Write("Works");
+            var model = new FileViewModel();
+            model.fileMetadataList = (from file in db.Files
+                                        where file.userID == fixedUserIDForTestingPurposesOnly
+                                        && file.fileName.Contains(searchString)
+                                        select new FileMetadata()
+                                        {
+                                            fileID = file.FileID,
+                                            fileName = file.fileName,
+                                            fileSize = file.fileSize,
+                                            fileDateCreated = file.fileDateCreated,
+                                        }).ToList();
             return View(model);
         }
 

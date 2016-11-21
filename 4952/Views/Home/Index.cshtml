@@ -9,10 +9,12 @@
 <div class="sidebar">
     <form class="search">
         <div class="row">
-            <div class="col-md-7" id="search-bar">
-                <input type="text" class="form-control" placeholder="Search" />
-            </div>
-            <button class="btn btn-warning"> Search </button>
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                <input type="text" class="form-control" name="SearchString"/>
+                <br />
+                <input type="submit" class="btn btn-warning" value="Search" />
+            }
         </div>
     </form>
     <br />
