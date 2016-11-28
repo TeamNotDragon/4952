@@ -9,6 +9,8 @@ using System.Data;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Diagnostics;
+using System.Text;
+using System.Data.Entity.Validation;
 
 namespace _4952.Controllers
 {
@@ -41,38 +43,8 @@ namespace _4952.Controllers
             Debug.Write("Works");
             var model = new FileViewModel();
             model.fileMetadataList = (from file in db.Files
-                                        where file.userID == fixedUserIDForTestingPurposesOnly
-                                        && file.fileName.Contains(searchString)
-                                        select new FileMetadata()
-                                        {
-                                            fileID = file.FileID,
-                                            fileName = file.fileName,
-                                            fileSize = file.fileSize,
-                                            fileDateCreated = file.fileDateCreated,
-                                        }).ToList();
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Index(FileViewModel model)
-        {
-            if (model.filePosted != null)
-            {
-                byte[] fileBytes = new byte[model.filePosted.InputStream.Length];
-                
-                model.filePosted.InputStream.Read(fileBytes, 0, fileBytes.Length);
-                db.Files.Add(new Models.File()
-                {
-                    userID = fixedUserIDForTestingPurposesOnly,
-                    data = fileBytes,
-                    fileName = model.filePosted.FileName,
-                    fileSize = fileBytes.Length,
-                    fileDateCreated = DateTime.Now
-                });
-                db.SaveChanges();
-            }
-            model.fileMetadataList = (from file in db.Files
                                       where file.userID == fixedUserIDForTestingPurposesOnly
+                                      && file.fileName.Contains(searchString)
                                       select new FileMetadata()
                                       {
                                           fileID = file.FileID,
@@ -81,6 +53,22 @@ namespace _4952.Controllers
                                           fileDateCreated = file.fileDateCreated,
                                       }).ToList();
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index()
+        {
+            byte[] fileBytes = Encoding.UTF8.GetBytes(Request["fileData"]);
+            db.Files.Add(new Models.File()
+            {
+                userID = fixedUserIDForTestingPurposesOnly,
+                data = fileBytes,
+                fileName = Request["fileName"],
+                fileSize = fileBytes.Length,
+                fileDateCreated = DateTime.Now
+            });
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
