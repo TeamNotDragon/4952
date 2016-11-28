@@ -84,6 +84,21 @@ namespace _4952.Controllers
         }
 
         [HttpPost]
+        void uploadFile(byte[] file, string filename)
+        {
+            db.Files.Add(new Models.File()
+            {
+                userID = fixedUserIDForTestingPurposesOnly,
+                data = file,
+                fileName = filename,
+                fileSize = file.Length,
+                fileDateCreated = DateTime.Now
+            });
+            db.SaveChanges();
+        }
+
+
+        [HttpPost]
         public ActionResult FileSelected(string submitButton)
         {
             int selectedFile;

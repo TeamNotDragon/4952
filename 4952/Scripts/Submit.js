@@ -27,3 +27,11 @@ function encrypt() {
 function decrypt() {
 
 }
+
+
+jQuery(function () {
+    $('input[name="rGroup"]').on('change', function () {
+        $("#fileDetails1").text("File name: " + $('input[name="rGroup"]:checked').attr("data-name"));
+        $("#fileDetails2").text("File size: " + $('input[name="rGroup"]:checked').attr("data-size") + " bytes");
+    });
+})
