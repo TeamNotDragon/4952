@@ -38,7 +38,6 @@ namespace _4952.Controllers
         [HttpGet]
         public ActionResult Search(string searchString)
         {
-            Debug.Write("Works");
             var model = new FileViewModel();
             model.fileMetadataList = (from file in db.Files
                                         where file.userID == fixedUserIDForTestingPurposesOnly
@@ -121,16 +120,13 @@ namespace _4952.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult About()
+        public ActionResult Manual()
         {
-            ViewBag.Message = "Your application description page.";
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Credits()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 

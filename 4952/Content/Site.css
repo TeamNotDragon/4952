@@ -74,7 +74,7 @@ textarea {
     text-align:center;
     width:20%;
     height:90%;
-    overflow: hidden; /* can me taken off in a bit*/
+    /*overflow: hidden;*/ /* can me taken off in a bit*/
 }
 .content{
     float:left;
