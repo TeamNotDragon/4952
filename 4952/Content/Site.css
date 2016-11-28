@@ -10,6 +10,12 @@ body {
     
 }
 
+a.navbar-brand {
+    background: url('Images/d98200426c83289bf50297862a83e80a.jpg');
+    display: block;
+    text-indent: -9999px;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -74,7 +80,7 @@ textarea {
     text-align:center;
     width:20%;
     height:90%;
-    overflow: hidden; /* can me taken off in a bit*/
+    /*overflow: hidden;*/ /* can me taken off in a bit*/
 }
 .content{
     float:left;

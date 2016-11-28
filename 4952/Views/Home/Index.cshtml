@@ -4,6 +4,7 @@
 }
 
 <script src="~/Scripts/Crypto/rollups/aes.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/Submit.js" type="text/javascript"></script>
 
 <div class="sidebar">
@@ -29,6 +30,12 @@
         <input type="text" id="fileData" name="fileData" hidden="hidden"/>
         <input type="text" id="fileName" name="fileName" hidden="hidden"/>
         <button type="submit" id="fileSubmit" hidden="hidden"></button>
+        <p id="fileDetails1">
+            No file selected.
+        </p>
+        <p id="fileDetails2">
+            
+        </p>
     </form>
 
     <br />
@@ -43,8 +50,6 @@
         <div class="topbar">
             <div id="topbuttons">
                 <input type="submit" class="btn btn-success" name="submitButton" value="Download" />
-                <button class="btn btn-warning">Create Folder</button>
-                <button class="btn btn-warning">Move To</button>
                 <input type="submit" class="btn btn-danger" name="submitButton" value="Delete" />
             </div>
             <input type="text" class="form-control" id="hashField" placeholder="Encryption string" />
