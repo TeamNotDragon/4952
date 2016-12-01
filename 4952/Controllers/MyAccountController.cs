@@ -50,7 +50,7 @@ namespace _4952.Controllers
                 var usr = db.Users.Single(u => u.email == user.email && u.password == user.password);
                 if (usr != null)
                 {
-                    Session["userID"] = usr.userID.ToString();
+                    Session["userID"] = usr.userID;
                     Session["email"] = usr.email.ToString();
                     return RedirectToAction("LoggedIn");
                 }

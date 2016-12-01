@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using _4952.Models;
-using System.Data.SqlClient;
 using System.Data;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Diagnostics;
 using System.Text;
-using System.Data.Entity.Validation;
+using Microsoft.AspNet.Identity;
 
 namespace _4952.Controllers
 {
     public class HomeController : Controller
     {
         azureEntities db = new azureEntities();
-        static int fixedUserIDForTestingPurposesOnly = 2;
 
         public ActionResult Index(string searchString)
         {
+            int id = (int)Session["userID"];
             var model = new FileViewModel();
             model.fileMetadataList = (from file in db.Files
-                                      where file.userID == fixedUserIDForTestingPurposesOnly
+                                      where file.userID == id
                                       select new FileMetadata()
                                       {
                                           fileID = file.FileID,
@@ -40,9 +34,10 @@ namespace _4952.Controllers
         [HttpGet]
         public ActionResult Search(string searchString)
         {
+            int id = (int)Session["userID"];
             var model = new FileViewModel();
             model.fileMetadataList = (from file in db.Files
-                                      where file.userID == fixedUserIDForTestingPurposesOnly
+                                      where file.userID == id
                                       && file.fileName.Contains(searchString)
                                       select new FileMetadata()
                                       {
@@ -60,7 +55,7 @@ namespace _4952.Controllers
             byte[] fileBytes = Encoding.UTF8.GetBytes(Request["fileData"]);
             db.Files.Add(new Models.File()
             {
-                userID = fixedUserIDForTestingPurposesOnly,
+                userID = (int)Session["userID"],
                 data = fileBytes,
                 fileName = Request["fileName"],
                 fileSize = fileBytes.Length,
@@ -90,7 +85,7 @@ namespace _4952.Controllers
         public ActionResult DownloadFile(int id)
         {
             Models.File file = db.Files.Find(id);
-            if (file != null && file.userID == fixedUserIDForTestingPurposesOnly)
+            if (file != null && file.userID == (int)Session["userID"])
             {
                 return File(file.data, System.Net.Mime.MediaTypeNames.Application.Octet, file.fileName.Trim());
             }
@@ -100,7 +95,7 @@ namespace _4952.Controllers
         public ActionResult DeleteFile(int id)
         {
             Models.File file = db.Files.Find(id);
-            if (file != null && file.userID == fixedUserIDForTestingPurposesOnly)
+            if (file != null && file.userID == (int)Session["userID"])
             {
                 db.Files.Remove(file);
                 db.SaveChanges();
