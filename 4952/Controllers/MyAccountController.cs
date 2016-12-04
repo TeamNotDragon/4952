@@ -9,12 +9,6 @@ namespace _4952.Controllers
 {
     public class MyAccountController : Controller
     {
-        // GET: MyAccount
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Register()
         {
             return View();
@@ -52,7 +46,7 @@ namespace _4952.Controllers
                 {
                     Session["userID"] = usr.userID;
                     Session["email"] = usr.email.ToString();
-                    return RedirectToAction("LoggedIn");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -66,7 +60,7 @@ namespace _4952.Controllers
         {
             Session["userID"] = null;
             Session["email"] = null;
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
 
 

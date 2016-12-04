@@ -14,7 +14,16 @@ namespace _4952.Controllers
 
         public ActionResult Index(string searchString)
         {
-            int id = (int)Session["userID"];
+            int id;
+            try
+            {
+                id = (int)Session["userID"];
+            }
+            catch
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             var model = new FileViewModel();
             model.fileMetadataList = (from file in db.Files
                                       where file.userID == id
