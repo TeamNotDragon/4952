@@ -30,17 +30,17 @@
         <input type="text" id="fileData" name="fileData" hidden="hidden"/>
         <input type="text" id="fileName" name="fileName" hidden="hidden"/>
         <button type="submit" id="fileSubmit" hidden="hidden"></button>
+        <br /><br />
         <p id="fileDetails1">
             No file selected.
         </p>
-        <p id="fileDetails2">
-            
-        </p>
+        <p id="fileDetails2"> </p>
     </form>
 
-    <br />
+    <br /><br />
+
     <div class="logout">
-        <button class="btn btn-warning"> Logout </button>
+        <button class="btn btn-warning" onclick="@Html.Action("Logout", "HomeController")"> Logout </button>
     </div>
 </div>
 

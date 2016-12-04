@@ -62,6 +62,14 @@ namespace _4952.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            Session["userID"] = null;
+            Session["email"] = null;
+            return RedirectToAction("Index");
+        }
+
+
         public ActionResult LoggedIn()
         {
             {

@@ -38,7 +38,14 @@ function download() {
 
 jQuery(function () {
     $('input[name="rGroup"]').on('change', function () {
-        $("#fileDetails1").text("File name: " + $('input[name="rGroup"]:checked').attr("data-name"));
-        $("#fileDetails2").text("File size: " + $('input[name="rGroup"]:checked').attr("data-size") + " bytes");
+        var fileName = $('input[name="rGroup"]:checked').attr("data-name");
+        
+        if (fileName !== undefined){
+            $("#fileDetails1").text("File name: " + fileName);
+            $("#fileDetails2").text("File size: " + $('input[name="rGroup"]:checked').attr("data-size") + " bytes");
+        } else {
+            $("#fileDetails1").text("No file selected");
+            $("#fileDetails2").text("");
+        }
     });
 })
