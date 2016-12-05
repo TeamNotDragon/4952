@@ -2,13 +2,22 @@
     var reader = new FileReader();
     reader.onload = function (e) {
         var encrypted = CryptoJS.AES.encrypt(e.target.result, document.getElementById("hashField").value);
-        var filePath = document.getElementById("filePosted").value;
+        var filePath = document.getElementById("choose_file").value;
         var fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
-        document.getElementById("fileData").value = encrypted;
-        document.getElementById("fileName").value = fileName;
-        document.getElementById("uploadForm").submit();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Home/UploadFile/',
+            data: JSON.stringify({ name: fileName, data: encrypted.toString() }),
+            dataType: "json",
+            contentType: "application/json",
+            success: function () {
+                location.reload();
+            }
+        });
+
     }
-    var file = document.getElementById("filePosted").files[0];
+    var file = document.getElementById("choose_file").files[0];
     reader.readAsDataURL(file);
 }
 
