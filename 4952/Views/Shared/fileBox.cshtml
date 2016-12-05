@@ -1,8 +1,11 @@
 ﻿@model _4952.Models.FileMetadata
 <input type="radio" name="rGroup" id="@Model.fileID" value="@Model.fileID" data-size="@Model.fileSize" data-name="@Model.fileName"/>
-<label for="@Model.fileID">
-    @Model.fileName
-    <br />
-    @Model.fileDateCreated.ToString("MM-dd-yyyy")
+<label id="filefile" for="@Model.fileID">
+    <span id="filename">
+        @Model.fileName
+    </span>
+    <span id="filedate">
+        @Model.fileDateCreated.ToString("MM-dd-yyyy")
+    </span>
     <br />
 </label>
