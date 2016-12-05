@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -9,6 +11,9 @@ namespace _4952.Controllers
 {
     public class MyAccountController : Controller
     {
+        private byte[] salt = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+        private int itterations = 57;
+
         public ActionResult Register()
         {
             return View();
@@ -30,8 +35,9 @@ namespace _4952.Controllers
                     ViewBag.Message = "Null Account";
                     return View();
                 }
+                string s = Encoding.Default.GetString(new Rfc2898DeriveBytes(account.password, salt, itterations).GetBytes(255));
+                account.password = s;
 
-                
                 db.Users.Add(account);
                 db.SaveChanges();
                 
@@ -57,6 +63,8 @@ namespace _4952.Controllers
                     ModelState.AddModelError("", "Enter a username / Password");
                     return View();
                 }
+                string s = Encoding.Default.GetString(new Rfc2898DeriveBytes(user.password, salt, itterations).GetBytes(255));
+                user.password = s;
                 if(db.Users.All(u => u.email != user.email || u.password != user.password))
                 {
                     ModelState.AddModelError("", "Username or Password is Wrong");
