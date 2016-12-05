@@ -1,46 +1,46 @@
-﻿function encrypt() {
+﻿function upload() {
     var reader = new FileReader();
-
     reader.onload = function (e) {
-        var decrypted = reader.result;
-        var key = document.getElementById("hashField").value;
-        var encrypted = CryptoJS.AES.encrypt(decrypted, key);
-        document.getElementById("fileData").value = encrypted;
-
+        var encrypted = CryptoJS.AES.encrypt(e.target.result, document.getElementById("hashField").value);
         var filePath = document.getElementById("filePosted").value;
         var fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
+        document.getElementById("fileData").value = encrypted;
         document.getElementById("fileName").value = fileName;
-
-        document.getElementById("fileSubmit").click();
+        document.getElementById("uploadForm").submit();
     }
-
     var file = document.getElementById("filePosted").files[0];
-    reader.readAsText(file);
+    reader.readAsDataURL(file);
 }
 
 function download() {
-    var element = document.createElement('a');
-
-    var encrypted = document.getElementById("fileData").value;
-    var key = document.getElementById("hashField").value;
-    var decrypted = CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8);
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(decrypted));
-
-    var fileName = document.getElementById("fileName").value;
-    element.setAttribute('download', fileName);
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    $.ajax({
+        url: "/Home/DownloadFile/" + $("input[name='rGroup']:checked").val(),
+        success: function (result) {
+            try {
+                var decrypted = CryptoJS.AES.decrypt(result.data, document.getElementById("hashField").value).toString(CryptoJS.enc.Utf8);
+                var link = document.createElement("a");
+                link.download = result.name;
+                link.href = decrypted;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            catch (err) {
+                alert("File decryption failed");
+            }
+        }
+    });
 }
 
+function deleteFile() {
+    window.location.href = "/Home/DeleteFile/" + $("input[name='rGroup']:checked").val();
+}
 
 jQuery(function () {
     $('input[name="rGroup"]').on('change', function () {
         var fileName = $('input[name="rGroup"]:checked').attr("data-name");
-        
-        if (fileName !== undefined){
+
+        if (fileName !== undefined) {
             $("#fileDetails1").text("File name: " + fileName);
             $("#fileDetails2").text("File size: " + $('input[name="rGroup"]:checked').attr("data-size") + " bytes");
         } else {

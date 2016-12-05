@@ -5,6 +5,7 @@ using _4952.Models;
 using System.Data;
 using System.Text;
 using Microsoft.AspNet.Identity;
+using System.Diagnostics;
 
 namespace _4952.Controllers
 {
@@ -61,6 +62,7 @@ namespace _4952.Controllers
         [HttpPost]
         public ActionResult Index()
         {
+            Debug.Print(Request["fileData"]);
             byte[] fileBytes = Encoding.UTF8.GetBytes(Request["fileData"]);
             db.Files.Add(new Models.File()
             {
@@ -74,31 +76,14 @@ namespace _4952.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult FileSelected(string submitButton)
-        {
-            int selectedFile;
-            if (int.TryParse(Request.Form["rGroup"], out selectedFile))
-            {
-                switch (submitButton)
-                {
-                    case "Download":
-                        return DownloadFile(selectedFile);
-                    case "Delete":
-                        return DeleteFile(selectedFile);
-                }
-            }
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult DownloadFile(int id)
+        public JsonResult DownloadFile(int id)
         {
             Models.File file = db.Files.Find(id);
             if (file != null && file.userID == (int)Session["userID"])
             {
-                return File(file.data, System.Net.Mime.MediaTypeNames.Application.Octet, file.fileName.Trim());
+                return Json(new { name = file.fileName.Trim(), data = Encoding.UTF8.GetString(file.data) }, JsonRequestBehavior.AllowGet);
             }
-            return RedirectToAction("Index");
+            return Json(new {}, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult DeleteFile(int id)
