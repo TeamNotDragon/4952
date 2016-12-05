@@ -63,11 +63,22 @@ jQuery(function () {
     $('input[name="rGroup"]').on('change', function () {
         var fileName = $('input[name="rGroup"]:checked').attr("data-name");
         if (fileName !== undefined) {
+            document.getElementById("downloadButton").className = "btn btn-success";
+            document.getElementById("deleteButton").className = "btn btn-danger";
             $("#fileDetails1").text("File name: " + fileName);
             $("#fileDetails2").text("File size: " + $('input[name="rGroup"]:checked').attr("data-size") + " bytes");
         } else {
+            document.getElementById("downloadButton").className = "btn";
+            document.getElementById("deleteButton").className = "btn";
             $("#fileDetails1").text("No file selected");
             $("#fileDetails2").text("");
+        }
+    });
+    $('input[name="filePosted"]').on('change', function () {
+        if ($(this).val() != null) {
+            document.getElementById("Upload").className = "btn btn-success btn-lg";
+        } else {
+            document.getElementById("Upload").className = "btn btn-lg";
         }
     });
 })

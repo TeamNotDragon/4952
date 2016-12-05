@@ -172,16 +172,8 @@ textarea {
     width: 10%;
 }
 
-.logout {
-    position: relative;
-    left: 0;
-    bottom: 0;
-}
-
 #logoutbutton {
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 25px;
+    float: right;
 }
 
 footer {

@@ -25,12 +25,13 @@
     </form>
     <div id="topbaroptions">
         <div id="topbuttons">
-            <button class="btn btn-success" onclick="download()">Download</button>
-            <button class="btn btn-danger" onclick="deleteFile()">Delete</button>
+            <button class="btn" onclick="download()" id="downloadButton">Download</button>
+            <button class="btn" onclick="deleteFile()" id="deleteButton">Delete</button>
         </div>
         <div id="encryption">
             <input type="text" class="form-control" id="hashField" placeholder="Encryption Key" />
         </div>
+        <button class="btn btn-warning" id="logoutbutton" onclick="logout()">Logout</button>
     </div>
 
 </div>
@@ -52,20 +53,15 @@
 
         <!-- pulled the html from the webpage.  need to dump the file into this.-->
         <form action="/Home/Index" enctype="multipart/form-data" method="post" id="myForm">
-            <input id="choose_file" data-val="true" data-val-required="The filePosted field is required." id="filePosted" name="filePosted" type="file" value="">
+            <input id="choose_file" data-val="true" data-val-required="The filePosted field is required." name="filePosted" type="file" value="">
             <span class="field-validation-valid" data-valmsg-for="filePosted" data-valmsg-replace="true"></span>
             <br>
-            <button id="Upload" type="button" class="btn btn-success btn-lg" onclick="upload()">Upload</button>
-            <br /><br />
-            <p id="fileDetails1">
-                No file selected.
-            </p>
-            <p id="fileDetails2"> </p>
+            <button id="Upload" type="button" class="btn btn-lg" onclick="upload()">Upload</button>
         </form>
-        <div class="logout">
-            <div id="logoutbutton">
-                <button class="btn btn-warning" onclick="logout()"> Logout </button>
-            </div>
-        </div>
+        <br />
+        <p id="fileDetails1">
+            No file selected.
+        </p>
+        <p id="fileDetails2"> </p>
     </div>
 </div>
