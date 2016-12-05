@@ -59,24 +59,7 @@ namespace _4952.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult Index()
-        {
-            Debug.Print(Request["fileData"]);
-            byte[] fileBytes = Encoding.UTF8.GetBytes(Request["fileData"]);
-            db.Files.Add(new Models.File()
-            {
-                userID = (int)Session["userID"],
-                data = fileBytes,
-                fileName = Request["fileName"],
-                fileSize = fileBytes.Length,
-                fileDateCreated = DateTime.Now
-            });
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        public JsonResult DownloadFile(int id)
+        public ActionResult DownloadFile(int id)
         {
             Models.File file = db.Files.Find(id);
             if (file != null && file.userID == (int)Session["userID"])
@@ -95,6 +78,21 @@ namespace _4952.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult UploadFile(string data, string name){
+            byte[] fileBytes = Encoding.UTF8.GetBytes(data);
+            db.Files.Add(new Models.File()
+            {
+                userID = (int)Session["userID"],
+                data = fileBytes,
+                fileName = name,
+                fileSize = fileBytes.Length,
+                fileDateCreated = DateTime.Now
+            });
+            db.SaveChanges();
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Manual()
