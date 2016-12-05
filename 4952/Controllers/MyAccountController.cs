@@ -19,11 +19,17 @@ namespace _4952.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (azureEntities db = new azureEntities())
+                azureEntities db = new azureEntities();
+                if(db.Users.Any(user => user.email == account.email))
                 {
-                    db.Users.Add(account);
-                    db.SaveChanges();
+                    ViewBag.Message = "Account already exists";
+                    return View();
                 }
+
+                
+                db.Users.Add(account);
+                db.SaveChanges();
+                
                 ModelState.Clear();
                 ViewBag.Message = "Successfully Registered";
                 return RedirectToAction("Login");
