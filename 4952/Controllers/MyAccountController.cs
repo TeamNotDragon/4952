@@ -25,6 +25,11 @@ namespace _4952.Controllers
                     ViewBag.Message = "Account already exists";
                     return View();
                 }
+                if(account.email == null || account.password == null)
+                {
+                    ViewBag.Message = "Null Account";
+                    return View();
+                }
 
                 
                 db.Users.Add(account);
@@ -47,16 +52,23 @@ namespace _4952.Controllers
         {
             using (azureEntities db = new azureEntities())
             {
+                if(user.email == null || user.password == null)
+                { 
+                    ModelState.AddModelError("", "Enter a username / Password");
+                    return View();
+                }
+                if(db.Users.All(u => u.email != user.email || u.password != user.password))
+                {
+                    ModelState.AddModelError("", "Username or Password is Wrong");
+                    return View();
+                }
                 var usr = db.Users.Single(u => u.email == user.email && u.password == user.password);
                 if (usr != null)
                 {
                     Session["userID"] = usr.userID;
                     Session["email"] = usr.email.ToString();
+                    Session["userID"] = usr.userID;
                     return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Username or Password is Wrong");
                 }
             }
             return View();
