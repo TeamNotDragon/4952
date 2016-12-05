@@ -47,20 +47,14 @@ namespace _4952.Controllers
         {
             using (azureEntities db = new azureEntities())
             {
-                if (user.email == null || user.email == null)
+                try
                 {
-                    ModelState.AddModelError("", "Enter a username / Password");
-                    return View();
-                }
-
-                var usr = db.Users.Single(u => u.email == user.email && u.password == user.password);
-                if (usr != null)
-                {
-                    Session["userID"] = usr.userID;
+                    var usr = db.Users.Single(u => u.email == user.email && u.password == user.password);
                     Session["email"] = usr.email.ToString();
+                    Session["userID"] = usr.userID;
                     return RedirectToAction("Index", "Home");
                 }
-                else
+                catch
                 {
                     ModelState.AddModelError("", "Username or Password is Wrong");
                 }
