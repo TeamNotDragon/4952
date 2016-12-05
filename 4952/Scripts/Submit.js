@@ -1,4 +1,5 @@
 ﻿window.onload = function () {
+    document.getElementById("myNav").hidden = "hidden";
     var hashField = document.getElementById("hashField");
     if (sessionStorage.getItem("hashField")) {
         hashField.value = sessionStorage.getItem("hashField");
