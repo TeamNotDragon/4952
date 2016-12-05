@@ -25,6 +25,11 @@ namespace _4952.Controllers
                     ViewBag.Message = "Account already exists";
                     return View();
                 }
+                if(account.email == null || account.password == null)
+                {
+                    ViewBag.Message = "Null Account";
+                    return View();
+                }
 
                 
                 db.Users.Add(account);
@@ -47,6 +52,11 @@ namespace _4952.Controllers
         {
             using (azureEntities db = new azureEntities())
             {
+                if(user.email == null || user.password == null)
+                {
+                    ViewBag.Message = "Null username and/or password";
+                    return View();
+                }
                 var usr = db.Users.Single(u => u.email == user.email && u.password == user.password);
                 if (usr != null)
                 {
