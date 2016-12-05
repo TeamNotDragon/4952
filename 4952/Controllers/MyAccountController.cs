@@ -47,6 +47,12 @@ namespace _4952.Controllers
         {
             using (azureEntities db = new azureEntities())
             {
+                if (user.email == null || user.email == null)
+                {
+                    ModelState.AddModelError("", "Enter a username / Password");
+                    return View();
+                }
+
                 var usr = db.Users.Single(u => u.email == user.email && u.password == user.password);
                 if (usr != null)
                 {
