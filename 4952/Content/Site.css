@@ -7,6 +7,7 @@ body {
     padding-top: 70px;
     min-height: 100%;
     overflow-y: hidden;
+    overflow-x: scroll;
     font-size: 12px;
 }
 
@@ -30,11 +31,11 @@ a.navbar-brand {
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 .headerbar {
     padding-top: 15px;
@@ -51,7 +52,6 @@ textarea {
 }
 
 .topbar {
-    display: inline-block;
     width: 100%;
     height: 20%;
     float: left;
@@ -63,26 +63,28 @@ textarea {
 }
 
 #topbaroptions {
-    overflow-x:hidden;
+    overflow-x: hidden;
     float: left;
-    width: 84%;
+    width: 83%;
     margin: 0;
-    margin-left: 1%;
+    margin-left: 10px;
     padding: 0;
 }
 
 #topbuttons {
+    display: block;
     float: left;
 }
 
 #encryption {
+    display: block;
     float: left;
 }
 
 #hashField {
     float: left;
     margin-left: 2%;
-    min-width: 10%;
+    width: 75%;
 }
 
 .search {
@@ -90,8 +92,10 @@ textarea {
     height: 100%;
 }
 
-#search-bar {
+#search_bar {
     float: left;
+    width: 100%;
+    height: 100%;
 }
 
 #search-box {

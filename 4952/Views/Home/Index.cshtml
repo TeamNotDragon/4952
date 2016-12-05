@@ -10,7 +10,7 @@
 <script src="~/Scripts/Submit.js" type="text/javascript"></script>
 <div class="topbar">
     <form class="search">
-        <div id="search-bar">
+        <div id="search_bar">
             @using (Html.BeginForm("Index", "Home", FormMethod.Get)) {
                 <input type="text" id="search-box" class="form-control" name="SearchString" placeholder="Search" />
             }
@@ -22,7 +22,7 @@
             <input type="submit" class="btn btn-danger" name="submitButton" value="Delete" />
         </div>
         <div id="encryption">
-            <input type="text" class="form-control" id="hashField" placeholder="Encryption string" />
+            <input type="text" class="form-control" id="hashField" placeholder="Encryption Key" />
         </div>
     </div>
 
