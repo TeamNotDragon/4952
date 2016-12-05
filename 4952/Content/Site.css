@@ -219,3 +219,11 @@ fileDetails2 {
     border-bottom: 1px solid;
     border-bottom-color: rgba(0, 0, 0, 0.4);
 }
+
+#email {
+    width: 30%;
+}
+
+#password { 
+    width: 30%;
+}
