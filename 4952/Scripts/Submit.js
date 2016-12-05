@@ -2,7 +2,7 @@
     var reader = new FileReader();
     reader.onload = function (e) {
         var encrypted = CryptoJS.AES.encrypt(e.target.result, document.getElementById("hashField").value);
-        var filePath = document.getElementById("filePosted").value;
+        var filePath = document.getElementById("choose_file").value;
         var fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
 
         $.ajax({
@@ -17,7 +17,7 @@
         });
 
     }
-    var file = document.getElementById("filePosted").files[0];
+    var file = document.getElementById("choose_file").files[0];
     reader.readAsDataURL(file);
 }
 
