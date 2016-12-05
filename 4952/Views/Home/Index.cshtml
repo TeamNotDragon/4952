@@ -3,64 +3,64 @@
     ViewBag.Title = "Home Page";
 }
 
+@Styles.Render("~/Content/Index.css")
+
 <script src="~/Scripts/Crypto/rollups/aes.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/Submit.js" type="text/javascript"></script>
-
-<div class="sidebar">
+<div class="topbar">
     <form class="search">
-        <div class="row">
-            <div id="search-bar">
-                @using (Html.BeginForm("Index", "Home", FormMethod.Get)) {
-                    <input type="text" id="search-box" class="form-control" name="SearchString" placeholder="Search" />
-                    <input type="submit" class="btn btn-warning" value="Search" id="search-button" />
-                }
-            </div>
+        <div id="search-bar">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get)) {
+                <input type="text" id="search-box" class="form-control" name="SearchString" placeholder="Search" />
+            }
         </div>
     </form>
-    <br />
-
-    <!-- pulled the html from the webpage.  need to dump the file into this.-->
-    <form action="/Home/Index" enctype="multipart/form-data" method="post" id="myForm">
-        <input data-val="true" data-val-required="The filePosted field is required." id="filePosted" name="filePosted" type="file" value="">
-        <span class="field-validation-valid" data-valmsg-for="filePosted" data-valmsg-replace="true"></span>   
-        <br>
-        <button type="button" class="btn btn-success btn-lg" onclick="encrypt()">Upload</button>
-        <!-- Gross hacky invisible form fields -->
-        <input type="text" id="fileData" name="fileData" hidden="hidden"/>
-        <input type="text" id="fileName" name="fileName" hidden="hidden"/>
-        <button type="submit" id="fileSubmit" hidden="hidden"></button>
-        <br /><br />
-        <p id="fileDetails1">
-            No file selected.
-        </p>
-        <p id="fileDetails2"> </p>
-    </form>
-
-    <br /><br />
-
-    <div class="logout">
-        <button class="btn btn-warning" onclick="location.href='@Url.Action("Logout", "MyAccount")'"> Logout </button>
+    <div id="topbaroptions">
+        <div id="topbuttons">
+            <input type="submit" class="btn btn-success" name="submitButton" value="Download" />
+            <input type="submit" class="btn btn-danger" name="submitButton" value="Delete" />
+        </div>
+        <div id="encryption">
+            <input type="text" class="form-control" id="hashField" placeholder="Encryption string" />
+        </div>
     </div>
+
 </div>
 
 <div class="content">
-    @using (Html.BeginForm("FileSelected", "Home", FormMethod.Post))
-    {
-        <div class="topbar">
-            <div id="topbuttons">
-                <input type="submit" class="btn btn-success" name="submitButton" value="Download" />
-                <input type="submit" class="btn btn-danger" name="submitButton" value="Delete" />
-            </div>
-            <input type="text" class="form-control" id="hashField" placeholder="Encryption string" />
-        </div>
-        <br />
+    @using (Html.BeginForm("FileSelected", "Home", FormMethod.Post)) {
         <input type="radio" name="rGroup" id="goat" checked="checked" hidden="hidden" />
         <label class="fileContainer" for="goat">
-            @foreach (_4952.Models.FileMetadata f in Model.fileMetadataList)
-            {
+            @foreach (_4952.Models.FileMetadata f in Model.fileMetadataList) {
                 @Html.Partial("fileBox", f)
             }
         </label>
     }
+</div>
+<div class="sidebar">
+    <div id="sidebar_buttons">
+
+        <!-- pulled the html from the webpage.  need to dump the file into this.-->
+        <form action="/Home/Index" enctype="multipart/form-data" method="post" id="myForm">
+            <input id="choose_file" data-val="true" data-val-required="The filePosted field is required." id="filePosted" name="filePosted" type="file" value="">
+            <span class="field-validation-valid" data-valmsg-for="filePosted" data-valmsg-replace="true"></span>
+            <br>
+            <button id="Upload" type="button" class="btn btn-success btn-lg" onclick="encrypt()">Upload</button>
+            <!-- Gross hacky invisible form fields -->
+            <input type="text" id="fileData" name="fileData" hidden="hidden" />
+            <input type="text" id="fileName" name="fileName" hidden="hidden" />
+            <button type="submit" id="fileSubmit" hidden="hidden"></button>
+            <br /><br />
+            <p id="fileDetails1">
+                No file selected.
+            </p>
+            <p id="fileDetails2"> </p>
+        </form>
+        <div class="logout">
+            <div id="logoutbutton">
+                <button class="btn btn-warning" onclick="location.href='@Url.Action("Logout", "MyAccount")'"> Logout </button>
+            </div>
+        </div>
+    </div>
 </div>
