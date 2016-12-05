@@ -1,4 +1,4 @@
-﻿html{
+﻿html {
     max-height: 100%;
     background-color: white;
 }
@@ -6,8 +6,8 @@
 body {
     padding-top: 70px;
     min-height: 100%;
-    
-    
+    overflow-y: hidden;
+    font-size: 12px;
 }
 
 a.navbar-brand {
@@ -25,7 +25,7 @@ a.navbar-brand {
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt { 
+.dl-horizontal dt {
     white-space: normal;
 }
 
@@ -36,92 +36,151 @@ textarea {
     max-width: 280px;
 }
 
-.headerbar{
-    padding-top:15px;
-    padding-bottom:15px;
-
-    align-content:flex-start;
+.headerbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    align-content: flex-start;
 }
-.btn{
+
+.btn {
     border-radius: 0px;
 }
+
 .col-md-10 {
     padding-bottom: 2%;
 }
-.topbar{
-    display:inline-block;
-    width:100%;
-    height: 10%;
-    /*
-    border-color:blue;
-    border-style: solid;
-        */
+
+.topbar {
+    display: inline-block;
+    width: 100%;
+    height: 20%;
+    float: left;
     margin-top: 0;
-    margin-bottom: 1%;
-    float:left;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    float: left;
+    background-color: #FAFAFA;
 }
-.search {
+
+#topbaroptions {
+    overflow-x:hidden;
+    float: left;
+    width: 84%;
     margin: 0;
-}
-#search-box {
+    margin-left: 1%;
     padding: 0;
-    margin-left: 10%;
-    width: 80%;
 }
-#search-button {
-    position: relative;
-    margin-top: 10px;
-}
-.topbuttons {
-    float:left;
-}
-.sidebar{
-    float:left;
-    text-align:center;
-    width:20%;
-    height:90%;
-    /*overflow: hidden;*/ /* can me taken off in a bit*/
-}
-.content{
-    float:left;
-    width:80%;
-    height:90%;
-}
-.fileContainer{
-    border-style:solid;
-    border-color:dimgrey;
-    background-color: whitesmoke;
-    border-width:1px;
-    height:75vh;
-    min-width: 100%;
-}
-.fileContainer input[type="radio"] {
-    display: none; 
-}
-.fileContainer label {
-    text-align:center;
-    background-color:white;
-    border-style:solid;
-    border-color:dimgrey;
-    border-width:1px;
-    width:inherit;
-    margin:5px;
-    padding:2px;
+
+#topbuttons {
     float: left;
 }
-.fileContainer input[type="radio"]:checked + label { 
-    border-width:2px;
-    padding:1px;
-    border-color: #5cb85c;
+
+#encryption {
+    float: left;
 }
-.logout{
-    position:relative;
-    bottom:0px;
+
+#hashField {
+    float: left;
+    margin-left: 2%;
+    min-width: 10%;
 }
-#form {
-    align-items:center;
-    text-align:center;
+
+.search {
+    width: 14.5%;
+    height: 100%;
 }
+
+#search-bar {
+    float: left;
+}
+
+#search-box {
+    margin-left: 5px;
+    width: 100%;
+    float: left;
+}
+
+.sidebar {
+    background-color: #EEEEEE;
+    float: left;
+    text-align: center;
+    width: 15%;
+    height: 90vh;
+    overflow-y: hidden;
+    border-left: 1px solid;
+    border-color: rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0px 16px 4px -12px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset 0px 16px 4px -12px rgba(0,0,0,0.25);
+    box-shadow: inset 0px 16px 4px -12px rgba(0,0,0,0.25);
+    /*overflow: hidden;*/ /* can me taken off in a bit*/
+}
+
+#sidebar_buttons {
+    height: 100%;
+    margin-top: 10px;
+}
+
+.content {
+    float: right;
+    width: 85%;
+    height: 90%;
+    -webkit-box-shadow: inset 0px 16px 9px -8px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset 0px 16px 9px -8px rgba(0,0,0,0.25);
+    box-shadow: inset 0px 16px 9px -8px rgba(0,0,0,0.25);
+}
+
+.fileContainer {
+    -webkit-box-shadow: inset 0px 16px 4px -12px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset 0px 16px 4px -12px rgba(0,0,0,0.25);
+    box-shadow: inset 0px 16px 4px -12px rgba(0,0,0,0.25);
+    background-color: #EEEEEE;
+    border-left: 1px solid #e1e1e1;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: rgb(225, 225, 225);
+    height: 90vh;
+    min-width: 100%;
+}
+
+    .fileContainer input[type="radio"] {
+        display: none;
+    }
+
+    .fileContainer label {
+        text-align: center;
+        background-color: white;
+        border-style: solid;
+        border-color: dimgrey;
+        border-width: 1px;
+        width: inherit;
+        margin: 5px;
+        padding: 2px;
+        float: left;
+    }
+
+    .fileContainer input[type="radio"]:checked + label {
+        border-width: 2px;
+        padding: 1px;
+        border-color: #5cb85c;
+    }
+
+#filefile {
+    word-wrap: break-word;
+    width: 10%;
+}
+
+.logout {
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+
+#logoutbutton {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
 footer {
     position: absolute;
     right: 0;
@@ -129,14 +188,31 @@ footer {
     left: 0;
     padding: 1rem;
 }
+
 #registerLink {
     color: white;
 }
-#topbuttons {
-    float: left;
+
+#choose_file {
+    width: 90%;
+    margin: 0 auto;
 }
-#hashField {
+
+#Upload {
+    width: 95%;
+}
+
+#fileDetails1 {
+    word-wrap: break-word;
+}
+
+fileDetails2 {
+    word-wrap: break-word;
+}
+
+#filename {
     float: left;
-    margin-left: 1%;
-    width: 20%;
+    width: 100%;
+    border-bottom: 1px solid;
+    border-bottom-color: rgba(0, 0, 0, 0.4);
 }
